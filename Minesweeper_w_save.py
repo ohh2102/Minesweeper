@@ -147,9 +147,10 @@ def Game():
     Board=Game_Board(columns, rows)
     Board.place_bombs(number_of_mines)
     playing_status=True
-    
+    count_moves=0
     
     while playing_status==True:
+        
         Board.print_board()
         save_choice=int(raw_input("Enter 0 to save game and 1 to keep playing"))
         if save_choice==1:
@@ -166,7 +167,13 @@ def Game():
                 continue
                 
             result=Board.player_pick(pick_row,pick_column)
+            
             if result==0:
+                break
+            elif result==1:
+                count_moves=count_moves+1
+            if count_moves==board_size-number_of_mines:
+                print "YOU WIN"
                 break
         else:
             file_name=raw_input("Enter the file to which you want to save the game")
@@ -238,6 +245,15 @@ def Get_or_Play():
 
 Get_or_Play()       
         
+        
+        
+    
+        
+        
+
+        
+
+
         
         
     
